@@ -1,0 +1,47 @@
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+    <title>Wicket Examples - navomatic</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+
+    <span wicket:id = "menu">
+        <div style = "width:250px">
+            <h3>GridView Page</h3>
+            This page demonstrates the GridView component
+        </div>
+    </span>
+    <br/><br/>
+    <div style="margin-left:200px;">
+
+
+
+
+
+        <br/><br/>
+        <div wicket:id="wmc">
+            <div wicket:id="feedback"></div>
+            <!-- Dropdown Project Selector
+
+            <form wicket:id="form">   -->
+                <p>
+                    <label>Select your Jira project </label>
+                    <br />
+                    <select wicket:id="projects"></select>
+                </p>
+            <!--   <input type="submit" value="Display" />
+             </form>  -->
+
+       <br/><br/>
+
+       <!-- Issues by Project Gridview -->
+            <span wicket:id="navigator">[dataview navigator]</span>
+            <table cellspacing="0" cellpadding="2" border="1">
+                <tr wicket:id="rows">
+                    <td wicket:id="cols"><span wicket:id="issueKey">[issueKey]</span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

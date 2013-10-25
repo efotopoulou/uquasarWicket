@@ -1,0 +1,26 @@
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+    <title>Wicket Examples - navomatic</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+
+<span wicket:id = "menu">
+        <div style = "width:250px">
+            <h3>JIRA Registered Projects</h3>
+            This page demonstrates the GridView component
+        </div>
+    </span>
+<br/><br/>
+<div style="margin-left:200px;">
+    <br/><br/>
+    <!-- Issues by Project Gridview -->
+    <span wicket:id="navigator">[dataview navigator]</span>
+    <table cellspacing="0" cellpadding="2" border="1">
+        <tr wicket:id="rows">
+            <td wicket:id="cols"><span wicket:id="project">[project]</span></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

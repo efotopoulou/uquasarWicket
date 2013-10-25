@@ -1,0 +1,39 @@
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+    <title>Issues Page</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+
+<span wicket:id = "menu">
+        <div style = "width:100%;font-size: 12px;" >
+            <h1>Bridge Projects</h1>
+           <p>In the following gridview JIRA Projects are presented.</p>
+        </div>
+    </span>
+
+<div style="float: left;margin-left: 40px;">
+
+    <div wicket:id="wmc">
+        <!-- Issues by Project Gridview -->
+        <span wicket:id="navigator">[dataview navigator]</span>
+        <table cellspacing="0" class="dataview">
+            <tr>
+                <th>Project Key</th>
+                <th>Description</th>
+                <th>ProjectUrl</th>
+                <th>Url</th>
+                <th>Lead</th>
+            </tr>
+            <tr wicket:id="simple">
+                <td><span wicket:id="key">[key]</span></td>
+                <td><span wicket:id="description">[description]</span></td>
+                <td><span wicket:id="projectUrl">[projectUrl]</span></td>
+                <td><span wicket:id="url">[url]</span></td>
+                <td><span wicket:id="lead">[lead]</span></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
