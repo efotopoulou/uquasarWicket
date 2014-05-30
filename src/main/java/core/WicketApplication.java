@@ -30,6 +30,8 @@ public class WicketApplication extends WebApplication
 		return JiraserverInfo.class;
 	}
 
+
+
 	/**
 	 * @see org.apache.wicket.Application#init()
 	 */
@@ -53,6 +55,8 @@ public class WicketApplication extends WebApplication
     public Session newSession(Request request, Response response) {
         return new WicketHttpsSession(request);
     }
+
+
 
 
 
