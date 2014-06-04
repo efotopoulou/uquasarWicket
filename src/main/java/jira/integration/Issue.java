@@ -15,6 +15,7 @@ public class Issue implements IClusterable {
 
 
     private String Key;
+    private  String Self;
     private  String Summary;
     private  String Type;
     private  String Status;
@@ -41,10 +42,15 @@ public class Issue implements IClusterable {
         //Duedate = duedate.getTime().toString();
     }
 
+    public Issue(String self, String key) {
+        Self = self;
+        Key = key;
+    }
+   /*
     public Issue(String key,  String description) {
         this.Key = key;
         this.Description=description;
-    }
+    }*/
 
     public Issue() {
 
@@ -163,6 +169,13 @@ public class Issue implements IClusterable {
 
     public void setDuedate(String duedate) {
         Duedate = duedate;
+    }
+    public String getSelf() {
+        return Self;
+    }
+
+    public void setSelf(String self) {
+        Self = self;
     }
 
 }

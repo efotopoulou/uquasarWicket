@@ -13,10 +13,18 @@ public class Project implements IClusterable {
 
     private Long id;
     private String Key;
+    private String Self;
+    private String Name;
     private String Description;
     private String ProjectUrl;
     private String Url;
     private String Lead;
+
+    public Project(String key, String self, String name) {
+        Key = key;
+        Self = self;
+        Name = name;
+    }
 
     public Project(String key, String description, String projectUrl, String url, String lead) {
         Key = key;
@@ -102,6 +110,22 @@ public class Project implements IClusterable {
 
     public void setLead(String lead) {
         Lead = lead;
+    }
+
+    public String getSelf() {
+        return Self;
+    }
+
+    public void setSelf(String self) {
+        Self = self;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
     }
 
 

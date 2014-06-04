@@ -8,7 +8,9 @@ package jira.integration;
  * To change this template use File | Settings | File Templates.
  */
 
-import com.atlassian.jira.rpc.soap.client.RemoteProject;
+import org.apache.wicket.ajax.json.JSONArray;
+import org.apache.wicket.ajax.json.JSONException;
+import org.apache.wicket.ajax.json.JSONObject;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
 
@@ -21,33 +23,46 @@ import java.util.*;
  * Time: 2:55 PM
  * To change this template use File | Settings | File Templates.
  */
-public class ProjectDataProvider implements IDataProvider<Project> {
+public class ProjectDataProvider      implements IDataProvider<Project> {
 
     Map<String, Project> map = Collections.synchronizedMap(new HashMap<String, Project>());
-    RemoteProject[] remoteProjects;
+    JSONArray projectsJSONArray;
 
-    public ProjectDataProvider(RemoteProject[] remoteProjects) {
-        this.remoteProjects = remoteProjects;
-        System.out.println("ProjectDataProvider size" + this.remoteProjects.length);
+    public ProjectDataProvider(JSONArray projectsJSONArray) {
+        this.projectsJSONArray = projectsJSONArray;
+       System.out.println("ProjectDataProvider size" + this.projectsJSONArray.length());
     }
+
+
 
     protected LinkedList<Project> getProjects() {
         LinkedList<Project> projects = new LinkedList<Project>();
 
-        for (RemoteProject remoteProject : remoteProjects) {
+        try {
+            for (int i = 0; i < projectsJSONArray.length(); i++) {
+                JSONObject remoteProject = null;
 
-            System.out.println("key"+remoteProject.getKey());
-            System.out.println("description"+remoteProject.getDescription());
-            System.out.println("lead"+remoteProject.getLead());
+                    remoteProject = projectsJSONArray.getJSONObject(i);
 
 
-            System.out.println("Tora tha dimiourgiso to Project..." +remoteProject.getKey()+"  "+remoteProject.getDescription()+"  "+remoteProject.getProjectUrl()+"  "+remoteProject.getUrl()+"  "+remoteProject.getLead());
+                System.out.println("key"+remoteProject.getString("key"));
 
-            Project p =   new Project(remoteProject.getKey(),remoteProject.getDescription(),remoteProject.getProjectUrl(),remoteProject.getUrl(),remoteProject.getLead());
-            System.out.println("To dimiourgisa to Project??" +remoteProject.getKey()+"  "+remoteProject.getDescription()+"  "+remoteProject.getProjectUrl()+"  "+remoteProject.getUrl()+"  "+remoteProject.getLead());
-            projects.add(p);
-            map.put(p.getKey(),p);
+
+
+               // System.out.println("Tora tha dimiourgiso to Project..." +remoteProject.getKey()+"  "+remoteProject.getDescription()+"  "+remoteProject.getProjectUrl()+"  "+remoteProject.getUrl()+"  "+remoteProject.getLead());
+
+                Project p =   new Project(remoteProject.getString("key"),remoteProject.getString("self"),remoteProject.getString("name"));
+                //System.out.println("To dimiourgisa to Project??" +remoteProject.getKey()+"  "+remoteProject.getDescription()+"  "+remoteProject.getProjectUrl()+"  "+remoteProject.getUrl()+"  "+remoteProject.getLead());
+                projects.add(p);
+                map.put(p.getKey(),p);
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
+
+
+
         System.out.println("projects size"+projects.size());
 
         return projects;
@@ -73,5 +88,7 @@ public class ProjectDataProvider implements IDataProvider<Project> {
     public void detach() {
         //To change body of implemented methods use File | Settings | File Templates.
     }
+
+
 }
 

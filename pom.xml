@@ -72,16 +72,24 @@
             <artifactId>wicket-request</artifactId>
             <version>${wicket.version}</version>
         </dependency>
+          <!-- after adding the jar in local maven repo
+          mvn install:install-file -Dfile=/home/eleni/IdeaProjects/jira-java-soap-client/jira-soapclient/target/jira-soapclient-4.1-SNAPSHOT-jar-with-dependencies.jar -DgroupId=com.atlassian.jira.plugins -DartifactId=jira-soapclient -Dversion=4.1-SNAPSHOT -Dpackaging=jar
+
           <dependency>
               <groupId>com.atlassian.jira.plugins</groupId>
               <artifactId>jira-soapclient</artifactId>
               <version>4.1-SNAPSHOT</version>
           </dependency>
-
-
-          <!-- after adding the jar in local maven repo
-          mvn install:install-file -Dfile=/home/eleni/IdeaProjects/jira-java-soap-client/jira-soapclient/target/jira-soapclient-4.1-SNAPSHOT-jar-with-dependencies.jar -DgroupId=com.atlassian.jira.plugins -DartifactId=jira-soapclient -Dversion=4.1-SNAPSHOT -Dpackaging=jar
           -->
+          <!--After adding to maven repo the uQuasarAdapter jar
+          mvn install:install-file -Dfile=/home/eleni/IdeaProjects/uQasarAdapter/target/uQasarAdapter.jar -DgroupId=uQasarAdapter -DartifactId=uQasarAdapter -Dversion=1.0 -Dpackaging=jar
+
+          <dependency>
+              <groupId>uQasarAdapter</groupId>
+              <artifactId>uQasarAdapter</artifactId>
+              <version>1.0</version>
+          </dependency>
+           -->
 
         <dependency>
             <groupId>org.springframework</groupId>
@@ -119,21 +127,8 @@
                 </exclusion>
             </exclusions>
         </dependency>
-          <!--
-          <dependency>
-            <groupId>org.apache.wicket</groupId>
-            <artifactId>wicket-spring-annot</artifactId>
-            <version>${wicket-spring-annot.version}</version>
-            <! - - exclude spring framework that wicket pulls in - - >
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        -->
-        <!-- LOGGING DEPENDENCIES - LOG4J -->
+
+        <!-- LOGGING DEPENDENCIES - LOG4J
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
@@ -143,15 +138,15 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.16</version>
-		</dependency>
+		</dependency>   -->
 
-		<!--  JUNIT DEPENDENCY FOR TESTING -->
+		<!--  JUNIT DEPENDENCY FOR TESTING
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.10</version>
 			<scope>test</scope>
-		</dependency>
+		</dependency>      -->
 
 		<!--  JETTY DEPENDENCIES FOR TESTING  -->
 		<dependency>
@@ -161,29 +156,29 @@
 			<scope>provided</scope>
 		</dependency>
 
-          <dependency>
-              <!-- JRJC is distributed under the Apache 2.0 license. -->
+          <!--dependency>
+              < ! - - JRJC is distributed under the Apache 2.0 license. - - >
               <groupId>com.atlassian.jira</groupId>
               <artifactId>jira-rest-java-client</artifactId>
               <version>2.0.0-m2</version>
               <exclusions>
                   <exclusion>
-                      <!--
+                      < ! - -
                      Not excluding this will pull in both stax:stax-api:1.0.1 and javax.xml.stream:stax-api:1.0.2
                      as transitive dependencies. We don't want both, and not excluding this will give you a duplicate
                      warning when the dependencies are shaded into the jar by the maven-shade-plugin
-                      -->
+                      - - >
                       <groupId>stax</groupId>
                       <artifactId>stax-api</artifactId>
                   </exclusion>
               </exclusions>
-          </dependency>
+          </dependency -->
           <dependency>
               <groupId>com.pingunaut</groupId>
               <artifactId>wicket-chartjs</artifactId>
               <version>6.14.0</version>
           </dependency>
-          <dependency>
+        <dependency>
               <groupId>com.googlecode.wicked-charts</groupId>
               <artifactId>wicked-charts-highcharts</artifactId>
               <version>1.5.0</version>
@@ -192,6 +187,34 @@
               <groupId>com.googlecode.wicked-charts</groupId>
               <artifactId>wicked-charts-wicket6</artifactId>
               <version>1.5.0</version>
+          </dependency>
+
+          <!--After adding to maven repo the uQuasarAdapter jar
+mvn install:install-file -Dfile=/home/eleni/IdeaProjects/JiraAdapter/target/JiraAdapter-1.0.jar -DgroupId=JiraAdapter -DartifactId=JiraAdapter -Dversion=1.0 -Dpackaging=jar
+             -->
+          <dependency>
+              <groupId>JiraAdapter</groupId>
+              <artifactId>JiraAdapter</artifactId>
+              <version>1.0</version>
+              <exclusions>
+                  <exclusion>
+                      <groupId>org.springframework</groupId>
+                      <artifactId>spring-beans</artifactId>
+                  </exclusion>
+                  <exclusion>
+                      <groupId>org.springframework</groupId>
+                      <artifactId>spring-core</artifactId>
+                  </exclusion>
+                      <exclusion>
+                          <groupId>org.springframework</groupId>
+                          <artifactId>spring</artifactId>
+                      </exclusion>
+              </exclusions>
+          </dependency>
+          <dependency>
+              <groupId>org.codehaus.jettison</groupId>
+              <artifactId>jettison</artifactId>
+              <version>1.1</version>
           </dependency>
       </dependencies>
 	<build>
@@ -269,7 +292,7 @@
 					<downloadSources>true</downloadSources>
 				</configuration>
 			</plugin>
-            <plugin>
+            <!--plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>2.1</version>
@@ -289,7 +312,7 @@
                         </transformer>
                     </transformers>
                 </configuration>
-            </plugin>
+            </plugin-->
 		</plugins>
 	</build>
 

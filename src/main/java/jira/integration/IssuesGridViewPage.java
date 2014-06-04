@@ -1,29 +1,13 @@
 package jira.integration;
 
-import com.atlassian.jira.rpc.soap.client.RemoteIssue;
-import com.atlassian.jira.rpc.soap.client.RemoteProject;
-import com.ubi.uquasar.menu;
-import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
-import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
-import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.form.DropDownChoice;
-import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
-import org.apache.wicket.markup.html.panel.FeedbackPanel;
-import org.apache.wicket.markup.repeater.Item;
-import org.apache.wicket.markup.repeater.data.GridView;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
-import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import spring.integration.ProjectInfo;
 
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -44,7 +28,7 @@ public class IssuesGridViewPage extends WebPage {
 
     public IssuesGridViewPage(final PageParameters parameters) throws MalformedURLException, RemoteException {
             super(parameters);
-
+    /*
         // add menu
         add(new menu("menu"));
 
@@ -147,7 +131,7 @@ public class IssuesGridViewPage extends WebPage {
         wmc.add(gridView);
         wmc.add(new PagingNavigator("navigator", gridView));
         wmc.add(new FeedbackPanel("feedback"));
-
+         */
     }
 
 

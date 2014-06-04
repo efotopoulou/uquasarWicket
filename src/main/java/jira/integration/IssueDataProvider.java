@@ -8,7 +8,9 @@ package jira.integration;
  * To change this template use File | Settings | File Templates.
  */
 
-import com.atlassian.jira.rpc.soap.client.RemoteIssue;
+import org.apache.wicket.ajax.json.JSONArray;
+import org.apache.wicket.ajax.json.JSONException;
+import org.apache.wicket.ajax.json.JSONObject;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -23,9 +25,11 @@ import java.util.*;
  * Time: 2:55 PM
  * To change this template use File | Settings | File Templates.
  */
-public class IssueDataProvider implements  IDataProvider<Issue> {
 
-    RemoteIssue[] remoteIssues;
+
+public class IssueDataProvider implements IDataProvider<Issue> {
+
+    JSONArray issuesJsonArray;
     Map<String, Issue> map = Collections.synchronizedMap(new HashMap<String, Issue>());
     LinkedList<Issue> issues = new LinkedList<Issue>();
     private static long nextId = 1;
@@ -37,25 +41,28 @@ public class IssueDataProvider implements  IDataProvider<Issue> {
     public IssueDataProvider(String projectKey) {
         this.projectKey = projectKey;
     }
-    public IssueDataProvider(RemoteIssue[] remoteIssues) {
-       this.remoteIssues = remoteIssues;
+    public IssueDataProvider(JSONArray issuesJsonArray) {
+       this.issuesJsonArray = issuesJsonArray;
     }
 
     protected LinkedList<Issue> getIssues() {
 
        LinkedList<Issue> issues = new LinkedList<Issue>();
+        try {
+        for (int i = 0; i < issuesJsonArray.length(); i++) {
 
-        for (RemoteIssue remoteIssue : remoteIssues) {
 
-          Issue i =   new Issue( remoteIssue.getKey(),remoteIssue.getSummary(),remoteIssue.getType(),remoteIssue.getStatus(),remoteIssue.getDescription(),
-                  remoteIssue.getEnvironment(),remoteIssue.getAssignee(),remoteIssue.getPriority(), remoteIssue.getProject(), remoteIssue.getCreated(),
-                  remoteIssue.getDuedate());
-          issues.add(i);
-          map.put(i.getKey(),i);
+            JSONObject remoteIssue = issuesJsonArray.getJSONObject(i);
+            Issue issue =   new Issue(remoteIssue.getString("self"),remoteIssue.getString("key"));
+            issues.add(issue);
+            map.put(issue.getKey(),issue);
         }
+
         System.out.println("issues size"+issues.size());
 
-
+        } catch (JSONException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
 
         return issues;
     }
@@ -84,4 +91,5 @@ public class IssueDataProvider implements  IDataProvider<Issue> {
     public void detach() {
         //To change body of implemented methods use File | Settings | File Templates.
     }
+
 }

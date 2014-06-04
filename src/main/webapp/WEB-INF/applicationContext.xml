@@ -13,4 +13,5 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
     <bean id="helloService" class="spring.integration.HelloService"/>
     <bean id="projectInfo" class="spring.integration.ProjectInfo"/>
 
+
 </beans>

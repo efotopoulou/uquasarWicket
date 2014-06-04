@@ -1,14 +1,8 @@
 
 package jira.integration;
 
-import com.atlassian.jira.rpc.soap.client.RemoteProject;
 import com.ubi.uquasar.menu;
 import org.apache.wicket.markup.html.WebPage;
-import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
-import org.apache.wicket.markup.repeater.Item;
-import org.apache.wicket.markup.repeater.data.GridView;
-import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import spring.integration.ProjectInfo;
 
@@ -35,7 +29,7 @@ public class ProjectsGridViewPage extends WebPage {
 
         // add menu
         add(new menu("menu"));
-
+     /*
       //show projects griedView
 
         RemoteProject[] remoteProjects = projectInfo.getJiraProjects();
@@ -64,7 +58,7 @@ public class ProjectsGridViewPage extends WebPage {
 
         add(gridView);
         add(new PagingNavigator("navigator", gridView));
-
+          */
 
 
     }

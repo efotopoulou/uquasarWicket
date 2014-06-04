@@ -1,9 +1,9 @@
 package jira.integration;
 
-import com.atlassian.jira.rpc.soap.client.RemoteProject;
 import com.ubi.uquasar.menu;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.json.JSONArray;
 import org.apache.wicket.ajax.markup.html.navigation.paging.AjaxPagingNavigator;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
@@ -45,10 +45,11 @@ public class ProjectsPage extends WebPage {
         wmc.setOutputMarkupId(true);
         add(wmc);
 
-
-        RemoteProject[] remoteProjects =  projectInfo.getJiraProjects();
+       JSONArray remoteProjects =  projectInfo.callJiraAdapter("PROJECTS_PER_SYSTEM_INSTANCE");
 
         dataProvider = new ProjectDataProvider(remoteProjects);
+
+
 
         DataView<Project> dataView = new DataView<Project>("simple", dataProvider) {
             private static final long serialVersionUID = 1L;
@@ -57,10 +58,9 @@ public class ProjectsPage extends WebPage {
             protected void populateItem(final Item<Project> item) {
                 Project project = item.getModelObject();
                 item.add(new Label("key", project.getKey()));
-                item.add(new Label("description", project.getDescription()));
-                item.add(new Label("projectUrl", project.getProjectUrl()));
-                item.add(new Label("url", project.getUrl()));
-                item.add(new Label("lead", project.getLead()));
+                item.add(new Label("name", project.getName()));
+                item.add(new Label("self", project.getSelf()));
+
 
 
                 item.add(AttributeModifier.replace("class", new AbstractReadOnlyModel<String>() {
@@ -85,6 +85,7 @@ public class ProjectsPage extends WebPage {
 
         dataView.setItemsPerPage(10);
         wmc.add(dataView);
+
 
     }
 
